@@ -13,7 +13,7 @@ const UserProfile =  () => {
   useEffect(()=> {
  async function fetchUserData() {
   try {
-    const response =  await axios.get(`http://localhost:3001/api/user-profile/${username}`)
+    const response =  await axios.get(`https://aeonaxy-c8zp.onrender.com/api/user-profile/${username}`)
     console.log(response.data);
     setUserData(response.data)
   } catch (error) {

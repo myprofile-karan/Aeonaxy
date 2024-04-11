@@ -24,14 +24,14 @@ const Signup = () => {
 
       // check user is already existed ot not
       const existingUser = await axios.get(
-        `http://localhost:3001/api/check-user/${username}`
+        `https://aeonaxy-c8zp.onrender.com/api/check-user/${username}`
       );
 
       if (existingUser.data.exists) {
         setUserExists(true);
         toast.error("user already exists!");
       } else {
-        const response = await axios.post("http://localhost:3001/api/signup", {
+        const response = await axios.post("https://aeonaxy-c8zp.onrender.com/api/signup", {
           name,
           username,
           email,

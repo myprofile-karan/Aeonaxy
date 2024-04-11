@@ -19,7 +19,7 @@ const CreateProfilePage = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:3001/api/update-user/${username}`,
+        `https://aeonaxy-c8zp.onrender.com/api/update-user/${username}`,
         {
           image: secure_url,
           location,

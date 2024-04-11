@@ -1,6 +1,6 @@
 import React from 'react'
 import Signup from './components/Signup'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import CreateProfilePage from './components/CreateProfilePage'
 import LookingFor from './components/LookingFor'
@@ -11,6 +11,7 @@ const App = () => {
     <div>
       <BrowserRouter>
         <Routes>
+            <Route path='/' element={<Navigate replace to="/signup" /> } />
             <Route path='/signup' element={<Signup />} />
             <Route path='/create-profile/:username' element={<CreateProfilePage />} />
             <Route path='/looking-for/:username' element={<LookingFor />} />
