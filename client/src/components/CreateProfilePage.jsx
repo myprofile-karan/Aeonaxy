@@ -10,6 +10,7 @@ const CreateProfilePage = () => {
   const [imageURL, setImageURL] = useState("");
   const [image, setImage] = useState("");
   const [disableBtn, setDisableBtn] = useState(true);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { username } = useParams();
 
@@ -18,6 +19,7 @@ const CreateProfilePage = () => {
     setImageURL(secure_url);
 
     try {
+      setLoading(true);
       const response = await axios.put(
         `https://aeonaxy-c8zp.onrender.com/api/update-user/${username}`,
         {
@@ -28,8 +30,11 @@ const CreateProfilePage = () => {
       console.log(response);
       toast.success("signup successful");
       navigate(`/looking-for/${username}`);
+      setLoading(false);
     } catch (error) {
       console.log("ERROR: ", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -124,7 +129,7 @@ const CreateProfilePage = () => {
               disableBtn ? "bg-[#F8B8D0]" : "bg-pink-500"
             } w-[250px] mt-5 py-2  text-white rounded-md flex justify-center`}
           >
-            Next
+            {loading ? "loading..." : "Next"}
           </button>
         </div>
       </section>

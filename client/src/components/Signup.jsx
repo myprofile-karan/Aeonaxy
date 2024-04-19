@@ -13,6 +13,7 @@ const Signup = () => {
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [validationErrors, setValidationErrors] = useState();
   const [userExists, setUserExists] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate()
   
   const handleSignup = async (e) => {
@@ -31,6 +32,7 @@ const Signup = () => {
         setUserExists(true);
         toast.error("user already exists!");
       } else {
+        setLoading(true);
         const response = await axios.post("https://aeonaxy-c8zp.onrender.com/api/signup", {
           name,
           username,
@@ -42,6 +44,7 @@ const Signup = () => {
         toast.success("signup successful");
         navigate(`/create-profile/${username}`);
         setValidationErrors();
+        setLoading(false);
         setName("");
         setUsername("");
         setEmail("");
@@ -50,6 +53,8 @@ const Signup = () => {
       }
     } catch (error) {
       console.log("ERROR: ", error);
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -201,7 +206,7 @@ const Signup = () => {
             onClick={handleSignup}
             className="text-white bg-[#EA4B8B] py-2 sm:w-[40%] rounded-md mt-6"
           >
-            Create account
+            {loading ? "loading.." : "Create account"}
           </button>
         </form>{" "}
       </div>
